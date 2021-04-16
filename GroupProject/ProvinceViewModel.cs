@@ -12,29 +12,42 @@ using Windows.UI.Xaml.Controls;
 using System.IO;
 namespace GroupProject
 {
-    public class CountryViewModel
+    public class ProvinceViewModel
     {
 
-        public ObservableCollection<CountryModel> Files { get; set; }
-        public List<CountryModel> _allFiles = new List<CountryModel>();
+        public ObservableCollection<ProvinceModel> Files { get; set; }
+        public List<ProvinceModel> _allFiles = new List<ProvinceModel>();
         public event PropertyChangedEventHandler PropertyChanged;
-        private CountryModel _selectedFile;
+        private ProvinceModel _selectedFile;
         private string _filter;
 
-        public string countryName { get; set; }
-        public string countryPop { get; set; }
-        public string countryCapitol { get; set; }
-
-        public string totalCases { get; set; }
-        public string totalRecovered { get; set; }
-        public string totalDeaths { get; set; }
-
-        public string totalVacines { get; set; }
-        public string totalPartialVacines { get; set; }
-        public string totalUnvaccinated { get; set; }
 
 
-        public CountryModel SelectedFile
+        public string province { get; set; }
+        public long activeCases { get; set; }
+        public long cumulativeCases { get; set; }
+        public long cumulativeDeaths { get; set; }
+        public long cumulativeVaccine { get; set; }
+        public long cumulativeRecovered { get; set; }
+        public long cumulativeTesting { get; set; }
+        public string provinceFlag { get; set; }
+
+
+
+        //public string countryName { get; set; }
+        //public string countryPop { get; set; }
+        //public string countryCapitol { get; set; }
+
+        //public string totalCases { get; set; }
+        //public string totalRecovered { get; set; }
+        //public string totalDeaths { get; set; }
+
+        //public string totalVacines { get; set; }
+        //public string totalPartialVacines { get; set; }
+        //public string totalUnvaccinated { get; set; }
+
+
+        public ProvinceModel SelectedFile
         {
             get { return _selectedFile; }
             set
@@ -47,28 +60,31 @@ namespace GroupProject
                 }
                 else //Set its text to the files text
                 {
-                    countryName = value.countryName;
-                    countryCapitol = value.countryCapitol;
-                    countryPop = value.countryPop;
-                    totalCases = value.cTotalCases;
-                    totalRecovered = value.cTotalRecovered;
-                    totalDeaths = value.cTotalDeaths;
-
-
+                    province = value.province;
+                    activeCases = value.activeCases;
+                    cumulativeCases = value.cumulativeCases;
+                    cumulativeDeaths = value.cumulativeDeaths;
+                    cumulativeVaccine = value.cumulativeVaccine;
+                    cumulativeRecovered = value.cumulativeRecovered;
+                    cumulativeTesting = value.cumulativeTesting;
+                    provinceFlag = value.provinceFlag;
 
                 }
 
                 //TODO Property for starter pages variables
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("FileText"));
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("province"));
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("activeCases"));
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("cumulativeRecovered"));
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("provinceFlag"));
 
             }
         }
 
-        public CountryViewModel()
+        public ProvinceViewModel()
         {
 
             //Create the colelction
-            Files = new ObservableCollection<CountryModel>();
+            Files = new ObservableCollection<ProvinceModel>();
 
             //Create the collection
             CreateCollection();
@@ -87,7 +103,7 @@ namespace GroupProject
             tmpFetch.GetData();
             //Yep
 
-            _allFiles = tmpFetch.countries;
+            _allFiles = tmpFetch.provinces;
 
 
             PerformFiltering();
@@ -109,7 +125,7 @@ namespace GroupProject
 
             //Use LINQ query to get all personmodel names that match filter text, as a list
             var result =
-                _allFiles.Where(d => d.countryName.ToLowerInvariant()
+                _allFiles.Where(d => d.province.ToLowerInvariant()
                 .Contains(lowerCaseFilter))
                 .ToList();
 

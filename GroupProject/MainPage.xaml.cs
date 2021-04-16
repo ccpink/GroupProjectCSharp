@@ -22,9 +22,14 @@ namespace GroupProject
     /// </summary>
     public sealed partial class MainPage : Page
     {
+        ProvinceViewModel viewModel;
+
         public MainPage()
         {
             this.InitializeComponent();
+            this.viewModel = new ProvinceViewModel();
+            FetchData data = new FetchData();
+            data.GetData();
         }
     }
 }

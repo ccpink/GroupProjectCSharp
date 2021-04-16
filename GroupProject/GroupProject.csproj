@@ -11,7 +11,7 @@
     <AssemblyName>GroupProject</AssemblyName>
     <DefaultLanguage>en-US</DefaultLanguage>
     <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
-    <TargetPlatformVersion Condition=" '$(TargetPlatformVersion)' == '' ">10.0.19041.0</TargetPlatformVersion>
+    <TargetPlatformVersion Condition=" '$(TargetPlatformVersion)' == '' ">10.0.18362.0</TargetPlatformVersion>
     <TargetPlatformMinVersion>10.0.17763.0</TargetPlatformMinVersion>
     <MinimumVisualStudioVersion>14</MinimumVisualStudioVersion>
     <FileAlignment>512</FileAlignment>
@@ -119,8 +119,6 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="CountrViewModel.cs" />
-    <Compile Include="CountryModel.cs" />
     <Compile Include="FetchData.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
@@ -128,6 +126,8 @@
     <Compile Include="CasesPage.xaml.cs">
       <DependentUpon>CasesPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ProvinceModelNew.cs" />
+    <Compile Include="ProvinceViewModel.cs" />
     <Compile Include="VaccinationPage.xaml.cs">
       <DependentUpon>VaccinationPage.xaml</DependentUpon>
     </Compile>
@@ -173,6 +173,9 @@
     <PackageReference Include="Newtonsoft.Json">
       <Version>13.0.1</Version>
     </PackageReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Assets\Flags\" />
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
